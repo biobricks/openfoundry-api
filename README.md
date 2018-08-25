@@ -10,7 +10,7 @@ pip install python-dotenv --user
 This is the configuration for the flask application environment.
 
 #### FLASK_APP
-default: /opefoundry.py  
+default: /openfoundry.py  
 description: The entry point script to be executed on ```flask run```.
 
 #### FLASK_ENV
