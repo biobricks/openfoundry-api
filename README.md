@@ -6,6 +6,17 @@ The application is configured using environment variables found in .env files. T
 pip install python-dotenv --user
 ```
 
+### .flaskenv
+This is the configuration for the flask application environment.
+
+#### FLASK_APP
+default: /opefoundry.py  
+description: The entry point script to be executed on ```flask run```.
+
+#### FLASK_ENV
+default: development  
+description: The server environment. Development enables the debugging console.
+
 ## Run
 ```
 flask run
