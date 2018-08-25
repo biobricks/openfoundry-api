@@ -21,9 +21,7 @@
     </head>
     <body>
       <div id="page-container">
-        <div id="navigation">
-          <a href="/">Home</a>
-        </div>
+        {% include 'navigation.html' %}
         {% block content %}{% endblock %}
       </div>  
     </body>
