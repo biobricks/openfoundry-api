@@ -1,3 +1,4 @@
+/* app wrapper to provide full screen */
 #app-container {
   position: relative;
   display: block;
@@ -5,6 +6,7 @@
   min-height: 100vh;
 }
 
+/* Bootstrap 4 Components */
 .jumbotron {
   margin-bottom: 0;
 }
