@@ -1,5 +1,5 @@
 from app import app
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 
 # creates a dictionary from sqlite db query result
 def dictionary_factory(cursor, row):
@@ -27,8 +27,10 @@ virtuals = [
 
 # openfoundry.xyz
 @app.route('/', methods=['GET'])
-def home():
-    return "<h1>Welcome To The OpenFoundry API</h1>"
+@app.route('/index')
+def index():
+  title = "OpenFOundry API"
+  return render_template('index.html', title=title)
 
 # openfoundry.xyz/api/v1/resources/virtuals/all
 @app.route('/api/v1/resources/virtuals/all', methods=['GET'])
