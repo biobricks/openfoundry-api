@@ -1,0 +1,30 @@
+<html>
+    <head>
+      {% if title %}  
+        <title>{{ title }} - OpenFoundry API</title>
+      {% else %}
+        <title>OpenFoundry API</title>
+      {% endif %}
+      <style>
+        /* quick reset for browser compatability */
+        * { margin: 0; padding: 0; }
+
+        #page-container {
+          position: relative;
+          display: block;
+          min-height: calc(100% - 24px);
+          width: calc(100% - 24px);
+          background-color: whitesmoke;
+          padding: 12px;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="page-container">
+        <div id="navigation">
+          <a href="/">Home</a>
+        </div>
+        {% block content %}{% endblock %}
+      </div>  
+    </body>
+</html>
