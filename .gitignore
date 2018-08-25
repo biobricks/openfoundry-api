@@ -4,3 +4,5 @@ venv/
 
 database.db
 openfoundry.pyc
+
+*.pyc
