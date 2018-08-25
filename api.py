@@ -1,4 +1,3 @@
-###
 import flask
 from flask import request, jsonify
 import sqlite3
@@ -9,9 +8,14 @@ app = flask.Flask(__name__)
 # set debugging to True to show errors on the screen, rather than Bad Gateway message
 app.config["DEBUG"] = True
 
-# Example Virtuals Data
-# ToDo: Replace with SQLite DB
+# creates a dictionary from sqlite db query result
+def dictionary_factory(cursor, row):
+    result_dictionary = {}
+    for idx, col in enumerate(cursor.description):
+        result_dictionary[col[0]] = row[idx]
+    return result_dictionary
 
+# Example Virtuals Data
 virtuals = [
   {'id': 0,
    'name': 'Foo',
@@ -53,9 +57,9 @@ def virtuals_all():
 
 
 
-##################################
-# get virtual by id with filters #
-##################################
+##########################################
+# get example virtual by id with filters #
+##########################################
 # openfoundry.xyz/api/v1/resources/virtuals?id=0
 @app.route('/api/v1/resources/virtuals', methods=['GET'])
 def virtual_id():
