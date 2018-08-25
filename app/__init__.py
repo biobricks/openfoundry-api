@@ -8,4 +8,7 @@ app = Flask(__name__)
 # set debugging to True to show errors on the screen, rather than Bad Gateway message
 app.config["DEBUG"] = True
 
+# set static assets folder
+app.static_folder = 'static'
+
 from app import routes
