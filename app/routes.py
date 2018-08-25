@@ -1,12 +1,5 @@
-import flask
+from app import app
 from flask import request, jsonify
-import sqlite3
-
-# create a flask application and assign to app variable
-app = flask.Flask(__name__)
-
-# set debugging to True to show errors on the screen, rather than Bad Gateway message
-app.config["DEBUG"] = True
 
 # creates a dictionary from sqlite db query result
 def dictionary_factory(cursor, row):
@@ -32,34 +25,16 @@ virtuals = [
 ]
 
 
-
-##########
-# routes #
-##########
-# all assume extension to a domain name / IP address / localhost
-# example: 
-# '/' = openfoundry.xyz
-# '/about' = openfoundry.xyz/about
-
-
-################
-# landing page #
-################
 # openfoundry.xyz
 @app.route('/', methods=['GET'])
 def home():
     return "<h1>Welcome To The OpenFoundry API</h1>"
 
-# ex. openfoundry.xyz/api/v1/resources/virtuals/all
+# openfoundry.xyz/api/v1/resources/virtuals/all
 @app.route('/api/v1/resources/virtuals/all', methods=['GET'])
 def virtuals_all():
   return jsonify(virtuals)
 
-
-
-##########################################
-# get example virtual by id with filters #
-##########################################
 # openfoundry.xyz/api/v1/resources/virtuals?id=0
 @app.route('/api/v1/resources/virtuals', methods=['GET'])
 def virtual_id():
@@ -117,18 +92,10 @@ def virtual_id():
             if str(virtual_key) == str(filter_key) and str(virtual_value).find(str(filter_value)) > -1:
               # add virtual to results
               results.append(virtual)              
-
   
   # return the results in json
   return jsonify(results)
 
-
-
-###########################
-# not found error handler #
-###########################
 @app.errorhandler(404)
 def page_not_found(e):
     return "<h1>404</h1><p>The resource could not be found.</p>", 404
-
-app.run() 

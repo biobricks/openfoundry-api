@@ -1,0 +1,2 @@
+FLASK_APP=openfoundry.py
+FLASK_ENV=development
