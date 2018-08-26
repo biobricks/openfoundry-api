@@ -29,7 +29,7 @@ virtuals = [
 @app.route('/', methods=['GET'])
 @app.route('/index')
 def index():
-  title = "OpenFOundry API"
+  title = "Welcome"
   return render_template('index.html', title=title)
 
 # openfoundry.xyz/api/v1/resources/virtuals/all
