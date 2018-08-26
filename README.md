@@ -129,6 +129,11 @@ flask db upgrade
 flask db downgrade
 ```
 
+#### Run Flask Shell
+```
+flask shell
+```
+
 #### Run Application
 ```
 flask run
