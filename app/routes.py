@@ -1,5 +1,6 @@
 from app import app
-from flask import request, jsonify, render_template
+from flask import request, jsonify, render_template, flash, redirect, url_for
+from app.forms import LoginForm
 
 # creates a dictionary from sqlite db query result
 def dictionary_factory(cursor, row):
@@ -31,7 +32,18 @@ def index():
   title = "Welcome"
   return render_template('index.html', title=title)
 
-# openfoundry.xyz
+# openfoundry.xyz/login
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+  title = "Login"
+  form = LoginForm()
+  if form.validate_on_submit():
+    print('submitted')
+    flash('Login requested for user={}, remember_me={}'.format(form.username.data, form.remember_me.data))
+    return redirect(url_for('index'))
+  return render_template('login.html', title=title, form=form)
+
+# openfoundry.xyz/api/v1/documentation
 @app.route('/api/v1/documentation', methods=['GET'])
 def documentation_version_one():
   title = "API Version 1 - Documentation"

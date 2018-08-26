@@ -7,6 +7,12 @@
 }
 
 /* Bootstrap 4 Components */
+
+.alert {
+  margin-bottom: 0;
+  border-radius: 0px;
+}
+
 .jumbotron {
   margin-bottom: 0;
 }
