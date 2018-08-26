@@ -94,6 +94,18 @@ def signup():
     return redirect(url_for('login'))
   return render_template('signup.html', title=title, form=form)  
 
+# user profile
+@app.route('/users/<username>')
+@login_required
+def user(username):
+  user = User.query.filter_by(username=username).first_or_404()
+  return render_template('user.html', user=user)
+
+
+
+
+
+
 # openfoundry.xyz/api/v1/documentation
 @app.route('/api/v1/documentation', methods=['GET'])
 def documentation_version_one():
