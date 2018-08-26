@@ -7,13 +7,21 @@
     <div class="collapse navbar-collapse" id="primary-navigation">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="{{ url_for('index') }}">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="documentationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Documentation
+            </a>
+            <div class="dropdown-menu" aria-labelledby="documentationDropdown">
+              <a class="dropdown-item" target="_blank" href="{{ url_for('documentation_version_one') }}">Version 1 (Current)</a>
+            </div>
+          </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="biobricksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             BioBricks
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="biobricksDropdown">
             <a class="dropdown-item" target="_blank" href="https://biobricks.org/">BioBricks</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" target="_blank" href="https://biobricks.org/bionet/">BioNet</a>

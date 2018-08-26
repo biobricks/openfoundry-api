@@ -27,10 +27,15 @@ virtuals = [
 
 # openfoundry.xyz
 @app.route('/', methods=['GET'])
-@app.route('/index')
 def index():
   title = "Welcome"
   return render_template('index.html', title=title)
+
+# openfoundry.xyz
+@app.route('/api/v1/documentation', methods=['GET'])
+def documentation_version_one():
+  title = "API Version 1 - Documentation"
+  return render_template('docs_v1.html', title=title)
 
 # openfoundry.xyz/api/v1/resources/virtuals/all
 @app.route('/api/v1/resources/virtuals/all', methods=['GET'])
