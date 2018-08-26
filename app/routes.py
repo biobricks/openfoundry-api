@@ -24,7 +24,6 @@ virtuals = [
 
 # openfoundry.xyz
 @app.route('/', methods=['GET'])
-@login_required
 def index():
   title = "Welcome"
   return render_template('index.html', title=title)
