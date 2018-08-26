@@ -1,6 +1,28 @@
 # OpenFoundry API
 
-## Run
+## CLI
+
+## Create Database Migration Repository
+```
+flask db init
+```
+
+## Create Database Migration
+```
+flask db migrate -m "my migration message"
+```
+
+## Run Database Migration/s
+```
+flask db upgrade
+```
+
+## Undo Last Database Migration
+```
+flask db downgrade
+```
+
+## Run Application
 ```
 flask run
 ```
