@@ -74,32 +74,6 @@ description: The server environment. Development enables the debugging console.
 The application configuration is loaded from a class found at [config.py](https://github.com/biobricks/openfoundry-api/blob/master/config.py).
 
 
-## Flask CLI
-
-## Create Database Migration Repository
-```
-flask db init
-```
-
-## Create Database Migration
-```
-flask db migrate -m "my migration message"
-```
-
-## Run Database Migration/s
-```
-flask db upgrade
-```
-
-## Undo Last Database Migration
-```
-flask db downgrade
-```
-
-## Run Application
-```
-flask run
-```
 
 ## Development
 
@@ -134,4 +108,31 @@ flask db migrate -m "comments table"
 Generating a migration does not alter the database. We have to run the migration:
 ```
 flask db upgrade
+```
+
+### Flask CLI
+
+#### Create Database Migration Repository
+```
+flask db init
+```
+
+#### Create Database Migration
+```
+flask db migrate -m "my migration message"
+```
+
+#### Run Database Migration/s
+```
+flask db upgrade
+```
+
+#### Undo Last Database Migration
+```
+flask db downgrade
+```
+
+#### Run Application
+```
+flask run
 ```
