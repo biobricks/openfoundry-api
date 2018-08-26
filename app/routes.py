@@ -1,6 +1,6 @@
-from app import app
+from app import app, db
 from flask import request, jsonify, render_template, flash, redirect, url_for
-from app.forms import LoginForm
+from app.forms import LoginForm, SignupForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
@@ -74,6 +74,25 @@ def login():
 def logout():
   logout_user()
   return redirect(url_for('index'))
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+  title = "Signup"
+  # validate 1. if there is a user logged in
+  if current_user.is_authenticated:
+    # redirect to the index page
+    return redirect(url_for('index'))  
+  # form set to instantiate /app/forms/SignupForm 
+  form = SignupForm()
+  # if there is a POST with form data
+  if form.validate_on_submit():
+    user = User(username=form.username.data, email=form.email.data)
+    password = user.set_password(form.password.data)
+    db.session.add(user)
+    db.session.commit()
+    flash('Your new account was successfully created. Please login.')
+    return redirect(url_for('login'))
+  return render_template('signup.html', title=title, form=form)  
 
 # openfoundry.xyz/api/v1/documentation
 @app.route('/api/v1/documentation', methods=['GET'])
