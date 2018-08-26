@@ -2,6 +2,8 @@ from flask import Flask
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import LoginManager
+
 
 # create a flask application and assign to app variable
 app = Flask(__name__)
@@ -18,4 +20,11 @@ db = SQLAlchemy(app)
 # set the migration engine
 migrate = Migrate(app, db)
 
+# handle login and remember me with login manager
+login = LoginManager(app)
+
+# access control redirect endpoint
+login.login_view = 'login'
+
+# instantiate routes, models
 from app import routes, models

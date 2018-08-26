@@ -40,7 +40,7 @@ venv\Scripts\activate
 
 ### Install Dependencies
 ```
-pip install flask python-dotenv flask-wtf flask-sqlalchemy flask-migrate
+pip install flask python-dotenv flask-wtf flask-sqlalchemy flask-migrate flask-login
 ```
 
 ### Run Application

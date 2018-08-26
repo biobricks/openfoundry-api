@@ -1,13 +1,9 @@
 from app import app
 from flask import request, jsonify, render_template, flash, redirect, url_for
 from app.forms import LoginForm
-
-# creates a dictionary from sqlite db query result
-def dictionary_factory(cursor, row):
-    result_dictionary = {}
-    for idx, col in enumerate(cursor.description):
-        result_dictionary[col[0]] = row[idx]
-    return result_dictionary
+from flask_login import current_user, login_user, logout_user, login_required
+from app.models import User
+from werkzeug.urls import url_parse
 
 # Example Virtuals Data
 virtuals = [
@@ -28,6 +24,7 @@ virtuals = [
 
 # openfoundry.xyz
 @app.route('/', methods=['GET'])
+@login_required
 def index():
   title = "Welcome"
   return render_template('index.html', title=title)
@@ -36,12 +33,47 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
   title = "Login"
-  form = LoginForm()
-  if form.validate_on_submit():
-    print('submitted')
-    flash('Login requested for user={}, remember_me={}'.format(form.username.data, form.remember_me.data))
+  # validate 1. if there is a user logged in
+  if current_user.is_authenticated:
+    # redirect to the index page
     return redirect(url_for('index'))
+  # form set to instantiate /app/forms/LoginForm 
+  form = LoginForm()
+  # if there is a POST with form data
+  if form.validate_on_submit():
+    # db query for user by the username form field
+    user = User.query.filter_by(username=form.username.data).first()
+    # validate 2. if there is no user found in db or the password check fails
+    if user is None or not user.check_password(form.password.data):
+      # set flash messsage
+      flash('Incorrect Username or Password')
+      # login failed - redirect to the current page showing the alert
+      return redirect(url_for('login'))
+    
+    # login has passed validation - log user in with optional remember me
+    login_user(user, remember=form.remember_me.data)
+    
+    # friendly redirect - requiring login redirects to login page, 
+    # successful login redirects to user's original intended location
+    
+    # get the next argument from the login url
+    next_page = request.args.get('next')
+    # if there is no next argument or 
+    # the next argument is set to a absolute path rather than a relative one
+    # absolute path for next is an attack vector, we want relative only 
+    if not next_page or url_parse(next_page).netloc != '':
+      # set the next page argument to the index page
+      next_page = url_for('index')
+    
+    # redirect to the route specified by the next_page variable
+    return redirect(next_page)
+  # if there is a GET request to the route, render the form  
   return render_template('login.html', title=title, form=form)
+
+@app.route('/logout')
+def logout():
+  logout_user()
+  return redirect(url_for('index'))
 
 # openfoundry.xyz/api/v1/documentation
 @app.route('/api/v1/documentation', methods=['GET'])
