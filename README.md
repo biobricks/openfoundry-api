@@ -54,10 +54,7 @@ flask run
 ## Configuration
 
 ### Flask Environment Variables
-The flask environment is configured using variables found in .env files. To use these files, install the [python-dotenv](https://github.com/theskumar/python-dotenv) module:
-```
-pip install python-dotenv --user
-```
+The flask environment is configured using variables found in .env files.
 
 ### .flaskenv
 This is the configuration for the flask application environment.
