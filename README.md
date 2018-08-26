@@ -38,12 +38,15 @@ source venv/bin/activate
 venv\Scripts\activate
 ```
 
-#### Install Dependencies
+### Install Dependencies
 ```
 pip install flask python-dotenv flask-wtf flask-sqlalchemy flask-migrate
 ```
 
-
+### Run Application
+```
+flask run
+```
 
 
 
