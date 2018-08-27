@@ -40,6 +40,16 @@ class Comment(db.Model):
   def __repr__(self):
     return '<Comment {}>'.format(self.body)
 
+class Virtual(db.Model):
+  id = db.Column(db.Integer, primary_key=True)
+  name = db.Column(db.String(64), index=True, unique=True)
+  genbank_file = db.Column(db.String(10000000))
+  timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+  user_id = db.Column(db.Integer, db.ForeignKey('user.id'))  
+
+  def __repr__(self):
+    return '<Virtual {}>'.format(self.body)
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))    
