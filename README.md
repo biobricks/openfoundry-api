@@ -75,7 +75,8 @@ description: Enables the debugging console.
 The application configuration is loaded from a class found at [config.py](https://github.com/biobricks/openfoundry-api/blob/master/config.py).
 
 #### Email Server Configuration
-Example: Gmail
+Example: Gmail  
+Note for this example to work, gmail requires insecure apps to be turned on [here](https://myaccount.google.com/lesssecureapps?pli=1).
 
 ##### Linux/Unix
 ```
