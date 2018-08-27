@@ -14,6 +14,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    bio = db.Column(db.String(140))
+    last_online = db.Column(db.DateTime, default=datetime.utcnow)
     # __repr__ method tells python how to print the class
     def __repr__(self):
       return '<User {}>'.format(self.username)

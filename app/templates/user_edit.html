@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-5">
+        <div class="card mt-3">
+          <div class="card-header">
+            <h3 class="text-capitalize text-center text-sm-left mb-0">Edit Profile</h3>
+          </div>
+          <div class="card-body">
+            <form action="" method="post">
+              {{ form.hidden_tag() }}
+              <div class="form-group">
+                {{ form.username.label }}
+                {{ form.username(size=32, class_="form-control", placeholder="username") }}
+                {% for error in form.username.errors %}
+                  <small class="form-text text-danger">{{error}}</small>
+                {% endfor %}
+              </div>
+              <div class="form-group">
+                {{ form.bio.label }}
+                {{ form.bio(cols=50, rows=4, class_="form-control", placeholder="A short bio.") }}
+                {% for error in form.bio.errors %}
+                  <small class="form-text text-danger">{{error}}</small>
+                {% endfor %}
+              </div>
+              <div class="form-group text-center">
+                {{ form.submit(class_="btn btn-lg btn-success mt-3") }}
+              </div>              
+            </form>  
+          </div>
+        </div>    
+      </div>
+    </div>    
+  </div>
+{% endblock %}
