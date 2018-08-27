@@ -65,12 +65,35 @@ description: The entry point script to be executed on ```flask run```.
 
 ##### FLASK_ENV
 default: development  
-description: The server environment. Development enables the debugging console.
+description: The server environment.
+
+##### FLASK_DEBUG
+default: 1  
+description: Enables the debugging console.
 
 ### Application Configuration
 The application configuration is loaded from a class found at [config.py](https://github.com/biobricks/openfoundry-api/blob/master/config.py).
 
+#### Email Server Configuration
+Example: Gmail
 
+##### Linux/Unix
+```
+export MAIL_SERVER=smtp.googlemail.com
+export MAIL_PORT=587
+export MAIL_USE_TLS=1
+export MAIL_USERNAME=<your-gmail-username>
+export MAIL_PASSWORD=<your-gmail-password>
+```
+
+##### Windows
+```
+set MAIL_SERVER=smtp.googlemail.com
+set MAIL_PORT=587
+set MAIL_USE_TLS=1
+set MAIL_USERNAME=<your-gmail-username>
+set MAIL_PASSWORD=<your-gmail-password>
+```
 
 ## Development
 
