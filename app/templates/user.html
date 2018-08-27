@@ -17,10 +17,10 @@
                 <p class="card-text">
                   Email:&nbsp;&nbsp;<a href="mailto:{{user.email}}">{{user.email}}</a>
                   {% if user.bio %}
-                    <br>Bio:&nbsp;&nbsp;{{user.bio}}
+                    <br>Bio:&nbsp;&nbsp;{{ user.bio }}
                   {% endif %}
                   {% if user.last_online %}
-                    <br>Last Online:&nbsp;&nbsp;{{user.last_online}}
+                    <br>Last Online:&nbsp;&nbsp;{{ moment(user.last_online).format('LLL') }}
                   {% endif %}
                 </p>
                 {% if current_user == user %}

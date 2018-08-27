@@ -3,6 +3,7 @@ from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_moment import Moment
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
@@ -28,13 +29,15 @@ login = LoginManager(app)
 # access control redirect endpoint
 login.login_view = 'login'
 
+# use moment.js for time and date parsing
+moment = Moment(app)
+
 # if the application is not in debugging mode
 if not app.debug:
 
   # Email Errors
   # if MAIL_SERVER exists within /config.py
   if app.config['MAIL_SERVER']:
-    print('mail server')
     # set auth to None by default
     auth = None
     # if MAIL_USERNAME or MAIL_PASSWORD exists within /config.py
